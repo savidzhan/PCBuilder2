@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">PCBuilder</string>
+    <string name="title_activity_home_main">HomeMainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="category_cpu">Процессоры</string>
+    <string name="category_mom">Материнские платы</string>
+    <string name="category_ram">Оперативная память</string>
+    <string name="category_gpu">Видеокарты</string>
+    <string name="category_hdd">Жесткие диски</string>
+    <string name="category_ssd">SSD диски</string>
+    <string name="category_supply">Блоки питания</string>
+    <string name="category_case">Корпуса</string>
+    <string name="category_cooler">Кулеры для процессора</string>
+
 </resources>

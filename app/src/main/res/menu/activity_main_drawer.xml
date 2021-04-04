@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_category_all"
+            android:title="Все компоненты" />
+        <item
+            android:id="@+id/nav_category_cpu"
+            android:title="@string/category_cpu" />
+        <item
+            android:id="@+id/nav_category_mom"
+            android:title="@string/category_mom" />
+        <item
+            android:id="@+id/nav_category_ram"
+            android:title="@string/category_ram" />
+        <item
+            android:id="@+id/nav_category_gpu"
+            android:title="@string/category_gpu" />
+        <item
+            android:id="@+id/nav_category_hdd"
+            android:title="@string/category_hdd" />
+        <item
+            android:id="@+id/nav_category_ssd"
+            android:title="@string/category_ssd" />
+        <item
+            android:id="@+id/nav_category_supply"
+            android:title="@string/category_supply" />
+        <item
+            android:id="@+id/nav_category_case"
+            android:title="@string/category_case" />
+        <item
+            android:id="@+id/nav_category_cooler"
+            android:title="@string/category_cooler" />
+    </group>
+</menu>

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PCBuilder">
-        <activity android:name=".ComponentAddActivity"></activity>
+        <activity
+            android:name=".HomeMainActivity"
+            android:label="@string/title_activity_home_main"
+            android:theme="@style/Theme.PCBuilder.NoActionBar"></activity>
+        <activity android:name=".ComponentAddActivity" />
         <activity android:name=".ViewListActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".HomeActivity" />
