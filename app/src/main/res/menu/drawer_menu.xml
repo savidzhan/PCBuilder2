@@ -3,6 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item android:title="Авторизация"
+        android:id="@+id/authIsFalse">
+        <menu>
+            <item
+                android:id="@+id/btnLoginInto"
+                android:title="Войти"/>
+            <item
+                android:id="@+id/btnRegisterInto"
+                android:title="Регистрация"/>
+        </menu>
+    </item>
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_category_all"

@@ -1,13 +1,17 @@
 package com.savijan.pcbuilder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,13 +21,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ViewListActivity extends AppCompatActivity {
-    ListView lvMain;
-    TextView tvOut;
+public class ViewListFragment extends Fragment{
+
+    private String categoryName;
+    private ListView lvMain;
+    private TextView tvOut;
     private ListView lvComponents;
     ArrayList<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
     private Map<String, Object> m;
@@ -31,33 +39,33 @@ public class ViewListActivity extends AppCompatActivity {
     private DatabaseReference sDateBase;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    private String TABLE_KEY;
     int img = R.drawable.ic_launcher_background;
+    private View v;
 
+    public ViewListFragment(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_list);
+    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.fragment_view_list, container, false);
 
         init();
+
         getDataFromDB();
 
+        return v;
     }
 
     private void init() {
-        tvOut = (TextView) findViewById(R.id.tvOut);
-        lvMain = (ListView) findViewById(R.id.lvComponents);
-        Intent intent = getIntent();
-        TABLE_KEY = intent.getStringExtra("category");
+        tvOut = (TextView) v.findViewById(R.id.tvOut);
+        lvMain = (ListView) v.findViewById(R.id.lvComponents);
 
-        sDateBase = FirebaseDatabase.getInstance().getReference(TABLE_KEY);
-        tvOut.setText("Вы выбрали категорию: " + TABLE_KEY);
+        sDateBase = FirebaseDatabase.getInstance().getReference(categoryName);
+        tvOut.setText("Вы выбрали категорию: " + categoryName);
 
         storage = FirebaseStorage.getInstance();
-
-
-
-
     }
 
     private void getDataFromDB(){
@@ -68,7 +76,7 @@ public class ViewListActivity extends AppCompatActivity {
                 if(data.size()>0){data.clear(); }
 
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    storageReference = storage.getReferenceFromUrl("gs://pcbuilder-savijan.appspot.com/cpu").child( ds.child("img").getValue()+".png");
+//                    storageReference = storage.getReferenceFromUrl("gs://pcbuilder-savijan.appspot.com/cpu").child( ds.child("img").getValue()+".png");
                     m = new HashMap<String, Object>();
                     m.put("name", ds.child("name").getValue());
                     m.put("description", ds.child("description").getValue());
@@ -79,7 +87,7 @@ public class ViewListActivity extends AppCompatActivity {
                 String[] from = {"name", "description", "image"};
                 int[] to = {R.id.tvName, R.id.tvDiscription, R.id.ivImg};
 
-                SimpleAdapter sAdapter = new SimpleAdapter(ViewListActivity.this, data, R.layout.components,from, to);
+                SimpleAdapter sAdapter = new SimpleAdapter(getContext(), data, R.layout.components,from, to);
                 lvMain.setAdapter(sAdapter);
 
             }
