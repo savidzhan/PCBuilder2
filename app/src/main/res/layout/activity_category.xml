@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".CategoryActivity"
+    android:layout_margin="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="КАТАЛОГ"
+            android:gravity="center_horizontal"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnCpuCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Процессоры"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnMotherCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Материнские платы"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnRamCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Оперативная память"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnGpuCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Видеокарты"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnHddCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Жесткие диски"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnSsdCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SSD диски"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnSupplyCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Блоки питания"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnCaseCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Корпуса"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnCoolerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Кулеры для процессора"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

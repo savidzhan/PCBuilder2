@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="inputTextStyle" parent="@style/TextAppearance.AppCompat">
+
+        <item name="android:textColor" type="color">@color/black</item>
+        <item name="android:textColorHint" type="color">@color/black</item>
+        <item name="android:colorBackgroundCacheHint">@color/black</item>
+
+    </style>
+
+</resources>

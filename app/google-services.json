@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "470277975084",
+    "project_id": "pcbuilder-savijan",
+    "storage_bucket": "pcbuilder-savijan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470277975084:android:0eef829fff77e08ecf7589",
+        "android_client_info": {
+          "package_name": "com.savijan.pcbuilder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470277975084-lj7pu0j6fj5pmd43mel4bi2n1m2ulei0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.savijan.pcbuilder",
+            "certificate_hash": "7e9dca80d90d87526b71489eaee88a3d0b224759"
+          }
+        },
+        {
+          "client_id": "470277975084-6kqele2op17n5a89hgtu8qptc1v9kder.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoi67hCkXl4amprF3xFTdXXrMaCRlrqV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470277975084-6kqele2op17n5a89hgtu8qptc1v9kder.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
