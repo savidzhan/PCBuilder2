@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -25,6 +26,7 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
 
     private DrawerLayout drawer;
     private TextView txtTest;
+    private boolean isLoginned;
 
     private Button btnLoginInto, btnRegisterInto;
 
@@ -46,7 +48,6 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        txtTest = findViewById(R.id.txtTest);
 
         btnLoginInto = (Button) findViewById(R.id.btnLoginInto);
         btnRegisterInto = (Button) findViewById(R.id.btnRegisterInto);
@@ -58,7 +59,18 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
 //
 //            }
 //        });
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Processors")).commit();
 
+//        afterLoginned();
+
+    }
+
+    public void afterLoginned(){
+
+        isLoginned = getIntent().getExtras().getBoolean("isLoginned");
+        if(isLoginned == true){
+            Toast.makeText(this, "Залогинился", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -68,6 +80,10 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void goToLoginAfterReg(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
     }
 
     @Override
@@ -81,45 +97,35 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
                 break;
             case R.id.nav_category_all:
-                txtTest.setText("nav_category_all");
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_category_cpu:
-                txtTest.setText("nav_category_cpu");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Processors")).commit();
                 break;
             case R.id.nav_category_mom:
-                txtTest.setText("nav_category_mom");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Motherboards")).commit();
                 break;
             case R.id.nav_category_ram:
-                txtTest.setText("nav_category_ram");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("RAM")).commit();
                 break;
             case R.id.nav_category_gpu:
-                txtTest.setText("nav_category_gpu");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Videocards")).commit();
                 break;
             case R.id.nav_category_hdd:
-                txtTest.setText("nav_category_hdd");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Hdddisks")).commit();
                 break;
             case R.id.nav_category_ssd:
-                txtTest.setText("nav_category_ssd");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Ssddiskd")).commit();
                 break;
             case R.id.nav_category_case:
-                txtTest.setText("nav_category_case");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Cases")).commit();
 
                 break;
             case R.id.nav_category_supply:
-                txtTest.setText("nav_category_supply");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Supply")).commit();
 
                 break;
             case R.id.nav_category_cooler:
-                txtTest.setText("nav_category_cooler");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Coolers")).commit();
                 break;
         }
