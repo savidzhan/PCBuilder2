@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,17 +36,19 @@ import io.paperdb.Paper;
 
 public class LoginFragment extends Fragment {
 
-    private View v;
+    private View v, vMain;
 
     private Button btnLoginIn;
     private EditText etLoginName, etPassword;
     private ProgressDialog loadingBar;
     private CheckBox chbRememberMe;
     public boolean isLoginned = false;
+    private View llHeader;
 
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.login_fragment, container, false);
+        vMain = inflater.inflate(R.layout.activity_drawer_main, container, true);
 
         etLoginName = (EditText) v.findViewById(R.id.etLoginName);
         etPassword = (EditText) v.findViewById(R.id.etPassword);
@@ -53,6 +56,8 @@ public class LoginFragment extends Fragment {
         chbRememberMe = (CheckBox) v.findViewById(R.id.rememberMe);
         Paper.init(v.getContext());
         loadingBar = new ProgressDialog(v.getContext());
+
+//        ((LinearLayout) getActivity().findViewById(R.id.authIsTrue)).setVisibility(View.VISIBLE);
 
 
         btnLoginIn.setOnClickListener(new View.OnClickListener() {

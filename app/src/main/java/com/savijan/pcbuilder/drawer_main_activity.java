@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,9 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        ((LinearLayout) findViewById(R.id.authIsTrue)).setVisibility(View.VISIBLE);
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -49,8 +53,8 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
         toggle.syncState();
 
 
-        btnLoginInto = (Button) findViewById(R.id.btnLoginInto);
-        btnRegisterInto = (Button) findViewById(R.id.btnRegisterInto);
+//        btnLoginInto = (Button) findViewById(R.id.btnLoginInto);
+////        btnRegisterInto = (Button) findViewById(R.id.btnRegisterInto);
 
 //        btnRegisterInto.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -90,14 +94,14 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.btnRegisterInto:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new RegisterFragment()).commit();
-                break;
-            case R.id.btnLoginInto:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
-                break;
+//            case R.id.btnRegisterInto:
+//                item.setVisible(false);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new RegisterFragment()).commit();
+//                break;
+//            case R.id.btnLoginInto:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
+//                break;
             case R.id.nav_category_all:
-                drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_category_cpu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Processors")).commit();
