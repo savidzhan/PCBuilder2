@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/imageComponent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/ic_baseline_flip_camera_ios_24"
         android:layout_marginBottom="10dp"/>
 

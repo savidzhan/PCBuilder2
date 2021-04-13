@@ -1,10 +1,8 @@
 package com.savijan.pcbuilder;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,27 +37,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ViewListFragment extends Fragment{
+public class ViewListAllFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private String categoryName;
-    private ListView lvMain;
-    private TextView tvOut;
     private DatabaseReference sDateBase;
+    private FirebaseStorage storage;
     private View v;
 
     private RecyclerView mRecyclerView;
     private imageAdapter mAdapter;
     private List<Upload> mUploads;
 
-
-    public ViewListFragment(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_view_list, container, false);
+        v = inflater.inflate(R.layout.fragment_view_list_all, container, false);
 
         init();
 
@@ -74,18 +64,19 @@ public class ViewListFragment extends Fragment{
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mUploads = new ArrayList<>();
 
-        tvOut = (TextView) v.findViewById(R.id.tvOut);
-
         sDateBase = FirebaseDatabase.getInstance().getReference("Categories");
-        tvOut.setText("Вы выбрали категорию: " + categoryName);
-
         sDateBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
-                for(DataSnapshot postSnapshot : snapshot.child(categoryName).getChildren()){
-                    Upload upload = postSnapshot.getValue(Upload.class);
-                    mUploads.add(upload);
+                for(DataSnapshot postSnapshot : snapshot.getChildren()){
+
+                    for (DataSnapshot pSnap : postSnapshot.getChildren()){
+                        Upload upload = pSnap.getValue(Upload.class);
+                        mUploads.add(upload);
+                    }
+
+
                 }
 
                 mAdapter = new imageAdapter(getContext(), mUploads, getFragmentManager());
@@ -99,8 +90,17 @@ public class ViewListFragment extends Fragment{
             }
         });
 
+        storage = FirebaseStorage.getInstance();
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

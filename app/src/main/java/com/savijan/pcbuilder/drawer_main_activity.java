@@ -63,7 +63,7 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
 //
 //            }
 //        });
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Processors")).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListAllFragment()).commit();
 
 //        afterLoginned();
 
@@ -102,6 +102,7 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
 //                break;
             case R.id.nav_category_all:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListAllFragment()).commit();
                 break;
             case R.id.nav_category_cpu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListFragment("Processors")).commit();

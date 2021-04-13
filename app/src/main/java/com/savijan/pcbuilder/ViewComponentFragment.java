@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +26,7 @@ import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ViewComponentFragment extends Fragment {
+public class ViewComponentFragment extends Fragment{
 
     private String componentName, componentDescription, componentCategory;
     private TextView tvNameCom, tvDesCom, tvCatCom, tvPriceCom;
@@ -61,7 +58,7 @@ public class ViewComponentFragment extends Fragment {
 
     private void init() {
 
-        sDateBase = FirebaseDatabase.getInstance().getReference(componentCategory);
+        sDateBase = FirebaseDatabase.getInstance().getReference("Categories");
         image = (ImageView) v.findViewById(R.id.imageComponent);
         tvCatCom = (TextView) v.findViewById(R.id.categoryComponent);
         tvNameCom = (TextView) v.findViewById(R.id.nameComponent);
@@ -82,17 +79,17 @@ public class ViewComponentFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String comName, comDes, comPrice, comImage;
-                comName = snapshot.child(componentName).child("name").getValue().toString();
-                comDes = snapshot.child(componentName).child("description").getValue().toString();
-                comPrice = snapshot.child(componentName).child("price").getValue().toString();
-                comImage = snapshot.child(componentName).child("img").getValue().toString();
+                comName = snapshot.child(componentCategory).child(componentName).child("name").getValue().toString();
+                comDes = snapshot.child(componentCategory).child(componentName).child("description").getValue().toString();
+                comPrice = snapshot.child(componentCategory).child(componentName).child("price").getValue().toString();
+                comImage = snapshot.child(componentCategory).child(componentName).child("img").getValue().toString();
 
                 getImageFromFirebase(comImage);
 
 
                 tvNameCom.setText(comName);
                 tvDesCom.setText(comDes);
-                tvPriceCom.setText(comPrice);
+                tvPriceCom.setText(comPrice + " тг");
 
 
             }
@@ -109,7 +106,7 @@ public class ViewComponentFragment extends Fragment {
 
     public void getImageFromFirebase(String imageUri){
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference photoReference= storageReference.child("cpu/" + imageUri + ".png");
+        StorageReference photoReference= storageReference.child(componentCategory + "/" + imageUri);
 
         final long ONE_MEGABYTE = 1024 * 1024;
         photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
