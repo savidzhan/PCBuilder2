@@ -8,23 +8,14 @@
     android:orientation="vertical"
     tools:context=".ViewListActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imghhhh"
-        />
-
     <TextView
         android:id="@+id/tvOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Список элементов"
-        android:paddingTop="10dp"
-        android:visibility="gone"/>
-    <ListView
-        android:id="@+id/lvComponents"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:text="Корзина"
+        android:layout_marginBottom="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,10 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+
+import io.paperdb.Paper;
 
 public class drawer_main_activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,7 +45,6 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
         setSupportActionBar(toolbar);
 
 //        ((LinearLayout) findViewById(R.id.authIsTrue)).setVisibility(View.VISIBLE);
-
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -98,9 +102,9 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
 //                item.setVisible(false);
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new RegisterFragment()).commit();
 //                break;
-//            case R.id.btnLoginInto:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
-//                break;
+            case R.id.cartBtn:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewCartFragment()).commit();
+                break;
             case R.id.nav_category_all:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewListAllFragment()).commit();
                 break;

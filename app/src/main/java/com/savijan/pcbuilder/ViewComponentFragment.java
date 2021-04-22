@@ -3,9 +3,11 @@ package com.savijan.pcbuilder;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.esotericsoftware.kryo.serializers.DefaultArraySerializers;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -26,12 +29,18 @@ import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ViewComponentFragment extends Fragment{
+import java.util.ArrayList;
+import java.util.List;
+
+import io.paperdb.Paper;
+
+public class ViewComponentFragment extends Fragment implements View.OnClickListener {
 
     private String componentName, componentDescription, componentCategory;
     private TextView tvNameCom, tvDesCom, tvCatCom, tvPriceCom;
     private ImageView image;
     private DatabaseReference sDateBase;
+    private Button cartComponent, buyComponent;
 //    int img = R.drawable.ic_baseline_flip_camera_ios_24;
     private View v;
 
@@ -64,6 +73,13 @@ public class ViewComponentFragment extends Fragment{
         tvNameCom = (TextView) v.findViewById(R.id.nameComponent);
         tvDesCom = (TextView) v.findViewById(R.id.descriptionComponent);
         tvPriceCom = (TextView) v.findViewById(R.id.priceComponent);
+        cartComponent = (Button) v.findViewById(R.id.cartComponent);
+        buyComponent = (Button) v.findViewById(R.id.buyComponent);
+
+        cartComponent.setOnClickListener(this::onClick);
+        buyComponent.setOnClickListener(this::onClick);
+
+        Paper.init(getContext());
 
         tvCatCom.setText(componentCategory);
 //        tvNameCom.setText(componentName);
@@ -124,4 +140,20 @@ public class ViewComponentFragment extends Fragment{
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cartComponent:
+                List<String> cartComponents = new ArrayList<>();
+                cartComponents.add(componentName);
+                Paper.book().write(componentName, componentName);
+                Toast.makeText(getContext(), "cart", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.buyComponent:
+                break;
+            default:
+                break;
+
+        }
+    }
 }

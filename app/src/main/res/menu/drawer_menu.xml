@@ -18,6 +18,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/cartBtn"
+            android:title="Корзина"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"/>
+        <item
             android:id="@+id/nav_category_all"
             android:title="Все компоненты" />
         <item
