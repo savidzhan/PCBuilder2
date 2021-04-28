@@ -73,13 +73,13 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
 
     }
 
-    public void afterLoginned(){
-
-        isLoginned = getIntent().getExtras().getBoolean("isLoginned");
-        if(isLoginned == true){
-            Toast.makeText(this, "Залогинился", Toast.LENGTH_LONG).show();
-        }
-    }
+//    public void afterLoginned(){
+//
+//        isLoginned = getIntent().getExtras().getBoolean("isLoginned");
+//        if(isLoginned == true){
+//            Toast.makeText(this, "Залогинился", Toast.LENGTH_LONG).show();
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
@@ -90,9 +90,9 @@ public class drawer_main_activity extends AppCompatActivity implements Navigatio
         }
     }
 
-    public void goToLoginAfterReg(){
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
-    }
+//    public void goToLoginAfterReg(){
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new LoginFragment()).commit();
+//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {

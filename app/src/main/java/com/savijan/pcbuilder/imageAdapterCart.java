@@ -21,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import io.paperdb.Paper;
+
 public class imageAdapterCart extends RecyclerView.Adapter<imageAdapterCart.ImageViewHolder>  implements View.OnClickListener{
 
     private Context mContext;
@@ -41,6 +43,8 @@ public class imageAdapterCart extends RecyclerView.Adapter<imageAdapterCart.Imag
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.item_image_cart, parent, false);
 
+        Paper.init(mContext);
+
         return new ImageViewHolder(v);
     }
 
@@ -60,6 +64,24 @@ public class imageAdapterCart extends RecyclerView.Adapter<imageAdapterCart.Imag
                 .into(holder.imageView);
 
         holder.itemView.setOnClickListener(this::onClick);
+
+        String nameToDelete = holder.name.getText().toString();
+
+        holder.deleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Paper.book().delete(nameToDelete);
+
+                mUploads.remove(position);
+
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, mUploads.size()+1);
+
+                holder.itemView.setVisibility(View.GONE);
+
+            }
+        });
 
     }
 
@@ -106,7 +128,6 @@ public class imageAdapterCart extends RecyclerView.Adapter<imageAdapterCart.Imag
             name = itemView.findViewById(R.id.tvName);
             categoryCom = itemView.findViewById((R.id.categoryCom));
             deleteItem = itemView.findViewById((R.id.deleteItem));
-            deleteItem.setBackgroundColor(Color.RED);
 
         }
 

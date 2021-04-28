@@ -8,8 +8,17 @@
     android:orientation="vertical"
     tools:context=".ViewListActivity">
 
+    <ImageButton
+        android:id="@+id/btnUpdateCartView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_update_24"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        />
+
     <TextView
-        android:id="@+id/tvOut"
+        android:id="@+id/tvCartOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

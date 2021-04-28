@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +30,13 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
-public class ViewCartFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class ViewCartFragment extends Fragment{
 
     private DatabaseReference sDateBase;
     private FirebaseStorage storage;
     private View v;
-    private TextView tvOut;
+    private TextView tvCartOut;
+    private ImageButton updateCart;
 
     private RecyclerView mRecyclerView;
     private imageAdapterCart mAdapter;
@@ -56,10 +59,27 @@ public class ViewCartFragment extends Fragment implements AdapterView.OnItemSele
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mUploads = new ArrayList<>();
 
-        tvOut = (TextView) v.findViewById(R.id.tvOut);
+        updateCart = (ImageButton) v.findViewById(R.id.btnUpdateCartView);
+        updateCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewCartFragment()).commit();
+            }
+        });
+
+        tvCartOut = (TextView) v.findViewById(R.id.tvCartOut);
 
         Paper.init(getContext());
+//        Paper.book().destroy();
         List<String> components = Paper.book().getAllKeys();
+
+        if(components.isEmpty()){
+            tvCartOut.setText("В корзине пусто!");
+        }
+
+//        if(mAdapter.getItemCount() == 0){
+//            tvCartOut.setText("В корзине пусто!");
+//        }
 
 
         sDateBase = FirebaseDatabase.getInstance().getReference("Categories");
@@ -94,14 +114,4 @@ public class ViewCartFragment extends Fragment implements AdapterView.OnItemSele
         storage = FirebaseStorage.getInstance();
     }
 
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
