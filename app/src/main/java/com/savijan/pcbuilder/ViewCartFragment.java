@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,11 +39,14 @@ public class ViewCartFragment extends Fragment{
     private FirebaseStorage storage;
     private View v;
     private TextView tvCartOut;
-    private ImageButton updateCart;
+//    private ImageButton updateCart;
+    private Button btnOrder;
+    private LinearLayout llTextOut;
 
     private RecyclerView mRecyclerView;
     private imageAdapterCart mAdapter;
     private List<Upload> mUploads;
+//    private FragmentManager fragmentManager;
 
     @Nullable
     @Override
@@ -59,15 +65,28 @@ public class ViewCartFragment extends Fragment{
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mUploads = new ArrayList<>();
 
-        updateCart = (ImageButton) v.findViewById(R.id.btnUpdateCartView);
-        updateCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewCartFragment()).commit();
-            }
-        });
+//        updateCart = (ImageButton) v.findViewById(R.id.btnUpdateCartView);
+//        updateCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new ViewCartFragment()).commit();
+//            }
+//        });
+
+        llTextOut = (LinearLayout) v.findViewById(R.id.llTextOut);
+        ViewGroup.LayoutParams params = llTextOut.getLayoutParams();
+// Changes the height and width to the specified *pixels*
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
 
         tvCartOut = (TextView) v.findViewById(R.id.tvCartOut);
+        btnOrder = (Button) v.findViewById(R.id.btnOrder);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_conteiner, new RegisterFragment()).commit();
+            }
+        });
 
         Paper.init(getContext());
 //        Paper.book().destroy();
@@ -75,6 +94,9 @@ public class ViewCartFragment extends Fragment{
 
         if(components.isEmpty()){
             tvCartOut.setText("В корзине пусто!");
+            btnOrder.setVisibility(View.GONE);
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            llTextOut.setLayoutParams(params);
         }
 
 //        if(mAdapter.getItemCount() == 0){

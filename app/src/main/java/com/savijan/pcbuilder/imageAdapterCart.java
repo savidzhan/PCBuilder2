@@ -80,7 +80,13 @@ public class imageAdapterCart extends RecyclerView.Adapter<imageAdapterCart.Imag
 
                 holder.itemView.setVisibility(View.GONE);
 
+                Fragment componentFrag = new ViewCartFragment();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.fragment_conteiner, componentFrag);
+                ft.commit();
+
             }
+
         });
 
     }

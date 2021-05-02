@@ -9,13 +9,6 @@
     android:padding="20dp">
 
     <EditText
-        android:id="@+id/etRegLoginName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Логин"
-        style="@style/inputTextStyle"/>
-    <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,20 +37,13 @@
         android:inputType="phone"
         android:hint="Телефон"
         style="@style/inputTextStyle"/>
-    <EditText
-        android:id="@+id/etRegPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Пароль"
-        style="@style/inputTextStyle"/>
 
     <Button
         android:id="@+id/btnRegUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Зарегистрироваться"
+        android:text="Перейти к оплате"
         android:background="@drawable/button"
         android:textSize="16sp"/>
 </LinearLayout>
